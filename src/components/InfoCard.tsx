@@ -1,4 +1,4 @@
-import { bscTestnet } from "viem/chains";
+import { arbitrumNova } from "viem/chains";
 
 import { MOOND_TOKEN_ADDR } from "../contracts";
 import InfoSVG from "./svg/Info";
@@ -15,29 +15,36 @@ const InfoCard: React.FC<InfoCardType> = ({ className }) => {
         Welcome to the MoonsDust Airdrop!
         <br />
         <br />
-        Exciting News: We&apos;re airdropping 15,000 MOOND tokens to RCAX
-        holders like you! Your share is based on your RCAX holdings during the
-        snapshot compared to the total RCAX supply, divided by 15,000 MOOND.
+        Exciting News:
         <br />
         <br />
+        We&apos;re airdropping 20,000 MOOND tokens to the top 100 DOUNT holders,
+        and 20,000 MOOND to all users who participated in last month
+        distribution.
         <br />
-        Formula: RCAX Held / Total RCAX Supply * 15,000 MOOND
-        <br /> <br />
+        Your share is based on your holdings during the snapshot compared to the
+        other top 100 holders, or other users who participated in last month
+        distribution.
+        <br />
+        <br />
         Thank you for being a part of our community! Enjoy your MOOND tokens.
-        <br /> <br />
+        <br />
+        <br />
         Questions? Reach out to our support team.
-        <br /> <br />
+        <br />
+        <br />
         Happy Airdropping! 🌕
-        <br /> <br />
+        <br />
+        <br />
         MOOND Contract Address on Arbitrum Nova: <br />
         <a
           href={`https://nova.arbiscan.io/token/${
-            MOOND_TOKEN_ADDR[bscTestnet.id]
+            MOOND_TOKEN_ADDR[arbitrumNova.id]
           }`}
           target="_blank"
           className="font-bold mt-4 underline hover:brightness-90 active:brightness-95 transition-all"
         >
-          {MOOND_TOKEN_ADDR[bscTestnet.id]}
+          {MOOND_TOKEN_ADDR[arbitrumNova.id]}
         </a>
       </div>
     </div>

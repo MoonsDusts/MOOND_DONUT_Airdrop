@@ -12,7 +12,7 @@ const Counter: React.FC<CounterType> = ({ left, setLeft, start, className }) => 
   let timerId = 0;
 
   useEffect(() => {
-    const endTime = Number(start) + 7 * 24 * 3600;
+    const endTime = Number(start) + 2 * 24 * 3600;
     const curTime = Math.floor(Date.now() / 1000);
 
     setLeft(endTime - curTime);

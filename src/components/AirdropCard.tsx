@@ -9,7 +9,7 @@ import {
   useWalletClient,
   useContractRead,
 } from "wagmi";
-import { bscTestnet } from "viem/chains";
+import { arbitrumNova } from "viem/chains";
 import { BaseError } from "viem";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { toast } from "react-hot-toast";
@@ -38,8 +38,8 @@ const AirdropCard = () => {
   const { chain } = useNetwork();
   const { switchNetworkAsync } = useSwitchNetwork();
 
-  const publicClient = usePublicClient({ chainId: bscTestnet.id });
-  const { data: walletClient } = useWalletClient({ chainId: bscTestnet.id });
+  const publicClient = usePublicClient({ chainId: arbitrumNova.id });
+  const { data: walletClient } = useWalletClient({ chainId: arbitrumNova.id });
   const [loading, setLoading] = useState(false);
   const [left, setLeft] = useState(0);
 
@@ -62,7 +62,7 @@ const AirdropCard = () => {
   }, []);
 
   const { data: airdrop } = useContractRead({
-    address: AIRDROP_ADDR[bscTestnet.id] as Address,
+    address: AIRDROP_ADDR[arbitrumNova.id] as Address,
     abi: AirdropABI,
     functionName: "airdrops",
     args: [address],
@@ -71,21 +71,21 @@ const AirdropCard = () => {
   });
 
   const { data: startTime } = useContractRead({
-    address: AIRDROP_ADDR[bscTestnet.id] as Address,
+    address: AIRDROP_ADDR[arbitrumNova.id] as Address,
     abi: AirdropABI,
     functionName: "startAirdropTime",
   });
 
   const onAirdrop = async () => {
     if (address && walletClient) {
-      if (chain?.id !== bscTestnet.id) {
-        await switchNetworkAsync?.(bscTestnet.id);
+      if (chain?.id !== arbitrumNova.id) {
+        await switchNetworkAsync?.(arbitrumNova.id);
       }
       setLoading(true);
       try {
         const { request } = await publicClient.simulateContract({
           account: address,
-          address: AIRDROP_ADDR[bscTestnet.id] as Address,
+          address: AIRDROP_ADDR[arbitrumNova.id] as Address,
           abi: AirdropABI,
           functionName: "airdrop",
           args: [],
@@ -114,7 +114,7 @@ const AirdropCard = () => {
       const res = await walletClient?.watchAsset({
         type: "ERC20",
         options: {
-          address: MOOND_TOKEN_ADDR[bscTestnet.id],
+          address: MOOND_TOKEN_ADDR[arbitrumNova.id],
           decimals: 18,
           symbol: "MOOND",
         },
